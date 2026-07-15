@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="filter-bar">
+    <form action="/" method="GET" class="filter-form">
+        <input type="hidden" name="q" value="{{ query if query else '' }}">
+
+        <select name="category" onchange="this.form.submit()">
+            <option value="All" {% if selected_category == 'All' %}selected{% endif %}>All Categories</option>
+            {% for cat in categories %}
+            <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="sort" onchange="this.form.submit()">
+            <option value="">Sort By</option>
+            <option value="low_high" {% if selected_sort == 'low_high' %}selected{% endif %}>Price: Low to High</option>
+            <option value="high_low" {% if selected_sort == 'high_low' %}selected{% endif %}>Price: High to Low</option>
+            <option value="rating" {% if selected_sort == 'rating' %}selected{% endif %}>Rating: High to Low</option>
+        </select>
+
+        {% if selected_category != 'All' or selected_sort or query %}
+        <a href="/" class="clear-filters">Clear Filters</a>
+        {% endif %}
+    </form>
+</div>
+
+{% if query %}
+<p class="search-results-info">Showing results for "{{ query }}" ({{ products|length }} found)</p>
+{% endif %}
+
+{% if products %}
+<div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+        <a href="/product/{{ product.id }}">
+            <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3>
+            <p class="price">₹{{ product.price }} <span class="discount">{{ product.discount }} off</span></p>
+            <p class="rating">⭐ {{ product.rating }}</p>
+        </a>
+        <form action="/add_to_cart/{{ product.id }}" method="POST">
+            <button type="submit" class="btn-cart-small">Add to Cart</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="no-results">No products found matching your filters.</p>
+{% endif %}
+{% endblock %}

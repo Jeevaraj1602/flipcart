@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="login-container">
+
+    <div class="login-box">
+
+        <!-- Left Side -->
+
+        <div class="login-left">
+
+            <h2>Login</h2>
+
+            <p>
+                Get access to your Orders, Wishlist and Recommendations.
+            </p>
+
+        </div>
+
+        <!-- Right Side -->
+
+        <div class="login-right">
+
+           <form method="POST">
+
+                <input
+                    type="text"
+                    placeholder="Enter Email / Mobile Number"
+                    required
+                >
+
+                <input
+                    type="password"
+                    placeholder="Enter Password"
+                    required
+                >
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
+            <p class="signup-text">
+
+                New to Flipkart?
+
+                <a href="#">
+                    Create an account
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

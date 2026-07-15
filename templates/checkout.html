@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="checkout-container">
+
+    <!-- Left Side -->
+
+    <div class="checkout-summary">
+
+        <h2>Delivery Address</h2>
+
+        <div class="address-form">
+
+            <input type="text" placeholder="Full Name" required>
+
+            <input type="text" placeholder="Mobile Number" required>
+
+            <textarea placeholder="House No, Street, Area" required></textarea>
+
+            <input type="text" placeholder="City" required>
+
+            <input type="text" placeholder="State" required>
+
+            <input type="text" placeholder="Pincode" required>
+
+        </div>
+
+        <br>
+
+        <h2>Order Summary</h2>
+
+        {% for item in cart_items %}
+        <div class="checkout-item">
+            <span>{{ item.name }} × {{ item.qty }}</span>
+            <span>₹{{ item.subtotal }}</span>
+        </div>
+        {% endfor %}
+
+        <div class="checkout-total">
+            <span>Total</span>
+            <span>₹{{ total }}</span>
+        </div>
+
+    </div>
+
+    <!-- Right Side -->
+
+    <div class="payment-section">
+
+        <h2>Select Payment Method</h2>
+
+        <form action="/place_order" method="POST">
+
+            <label class="payment-option">
+                <input type="radio" name="payment_method" value="UPI" checked>
+                UPI (Google Pay / PhonePe / Paytm)
+            </label>
+
+            <label class="payment-option">
+                <input type="radio" name="payment_method" value="Credit/Debit Card">
+                Credit / Debit Card
+            </label>
+
+            <label class="payment-option">
+                <input type="radio" name="payment_method" value="Net Banking">
+                Net Banking
+            </label>
+
+            <label class="payment-option">
+                <input type="radio" name="payment_method" value="Cash on Delivery">
+                Cash on Delivery
+            </label>
+
+            <button type="submit" class="btn-place-order">
+                Place Order
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

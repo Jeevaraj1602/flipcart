@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flipkart Clone</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">Flipkart</a>
+        <form class="search-form" action="/" method="GET">
+            <input type="text" name="q" class="search-bar" placeholder="Search for products, brands and more" value="{{ query if query else '' }}">
+        </form>
+       <div class="nav-links">
+
+    <a href="/login" class="login-btn">
+        Login
+    </a>
+
+    <a href="/cart" class="cart-link">
+        🛒 Cart
+        {% if cart_count and cart_count > 0 %}
+        <span class="cart-badge">{{ cart_count }}</span>
+        {% endif %}
+    </a>
+
+</div>
+           
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; Flipkart Project</p>
+    </footer>
+</body>
+</html>

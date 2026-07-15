@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="detail-container">
+    <div class="detail-image">
+        <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
+    </div>
+    <div class="detail-info">
+        <h1>{{ product.name }}</h1>
+        <p class="rating">⭐ {{ product.rating }}</p>
+        <p class="detail-price">₹{{ product.price }} <span class="discount">{{ product.discount }} off</span></p>
+        <p class="detail-desc">This is a great product with excellent features and quality. Perfect for everyday use.</p>
+        <div class="detail-buttons">
+            <form action="/add_to_cart/{{ product.id }}" method="POST">
+                <button type="submit" class="btn-cart">Add to Cart</button>
+            </form>
+            <form action="/buy_now/{{ product.id }}" method="POST">
+                <button type="submit" class="btn-buy">Buy Now</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

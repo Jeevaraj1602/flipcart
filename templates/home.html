@@ -1,51 +1,327 @@
 {% extends "base.html" %}
+
+
+{% block css %}
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/home.css') }}">
+
+{% endblock %}
+
+
+
 {% block content %}
 
+
+
+<!-- ================= FILTER SECTION ================= -->
+
 <div class="filter-bar">
+
     <form action="/" method="GET" class="filter-form">
-        <input type="hidden" name="q" value="{{ query if query else '' }}">
+
+
+        <input type="hidden" 
+        name="q" 
+        value="{{ query if query else '' }}">
+
+
 
         <select name="category" onchange="this.form.submit()">
-            <option value="All" {% if selected_category == 'All' %}selected{% endif %}>All Categories</option>
+
+            <option value="All">
+                All Categories
+            </option>
+
+
             {% for cat in categories %}
-            <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+
+            <option value="{{ cat }}"
+            {% if selected_category == cat %}selected{% endif %}>
+
+                {{ cat }}
+
+            </option>
+
             {% endfor %}
+
+
         </select>
+
+
+
+
 
         <select name="sort" onchange="this.form.submit()">
-            <option value="">Sort By</option>
-            <option value="low_high" {% if selected_sort == 'low_high' %}selected{% endif %}>Price: Low to High</option>
-            <option value="high_low" {% if selected_sort == 'high_low' %}selected{% endif %}>Price: High to Low</option>
-            <option value="rating" {% if selected_sort == 'rating' %}selected{% endif %}>Rating: High to Low</option>
+
+
+            <option value="">
+                Sort By
+            </option>
+
+
+            <option value="low_high"
+            {% if selected_sort == 'low_high' %}selected{% endif %}>
+
+                Price: Low to High
+
+            </option>
+
+
+
+            <option value="high_low"
+            {% if selected_sort == 'high_low' %}selected{% endif %}>
+
+                Price: High to Low
+
+            </option>
+
+
+
+
+            <option value="rating"
+            {% if selected_sort == 'rating' %}selected{% endif %}>
+
+                Top Rated
+
+            </option>
+
+
         </select>
 
+
+
+
         {% if selected_category != 'All' or selected_sort or query %}
-        <a href="/" class="clear-filters">Clear Filters</a>
+
+        <a href="/" class="clear-filters">
+
+            Clear Filters
+
+        </a>
+
         {% endif %}
+
+
+
     </form>
+
+
 </div>
+
+
+
+
+
+<!-- ================= SEARCH INFO ================= -->
+
 
 {% if query %}
-<p class="search-results-info">Showing results for "{{ query }}" ({{ products|length }} found)</p>
+
+<div class="search-results-info">
+
+    Search results for:
+    <b>"{{ query }}"</b>
+
+    ({{ products|length }} products)
+
+</div>
+
+
 {% endif %}
 
+
+
+
+
+
+
+<!-- ================= PRODUCT SECTION ================= -->
+
+
 {% if products %}
-<div class="product-grid">
-    {% for product in products %}
-    <div class="product-card">
-        <a href="/product/{{ product.id }}">
-            <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
-            <h3>{{ product.name }}</h3>
-            <p class="price">₹{{ product.price }} <span class="discount">{{ product.discount }} off</span></p>
-            <p class="rating">⭐ {{ product.rating }}</p>
-        </a>
-        <form action="/add_to_cart/{{ product.id }}" method="POST">
-            <button type="submit" class="btn-cart-small">Add to Cart</button>
-        </form>
-    </div>
-    {% endfor %}
+
+
+
+<div class="section-title">
+
+    <h2>
+
+        Best Deals For You 🛍️
+
+    </h2>
+
+
 </div>
+
+
+
+
+
+<div class="product-grid">
+
+
+
+{% for product in products %}
+
+
+
+<div class="product-card">
+
+
+
+    <a href="/product/{{ product.id }}">
+
+
+
+        <img 
+        src="{{ url_for('static', filename='images/' + product.image) }}"
+        alt="{{ product.name }}">
+
+
+
+
+
+        <h3>
+
+            {{ product.name }}
+
+        </h3>
+
+
+
+
+
+    </a>
+
+
+
+
+<div class="product-price">
+
+    {% if product.original_price %}
+
+    <span class="old-price">
+
+        ₹{{ product.original_price }}
+
+    </span>
+
+    {% endif %}
+
+
+
+    <span class="current-price">
+
+        ₹{{ product.price }}
+
+    </span>
+
+
+
+    <span class="discount">
+
+        {{ product.discount }} OFF
+
+    </span>
+
+
+</div>
+
+
+
+
+
+    <div class="rating">
+
+        ⭐ {{ product.rating }}
+
+    </div>
+
+
+
+
+
+
+
+    <div class="product-buttons">
+
+
+
+        <form action="/add_to_cart/{{ product.id }}" method="POST">
+
+
+            <button class="add-cart-btn">
+
+                <i class="fa fa-shopping-cart"></i>
+
+                Add To Cart
+
+            </button>
+
+
+        </form>
+
+
+
+
+
+        <form action="/buy_now/{{ product.id }}" method="POST">
+
+
+            <button class="buy-btn">
+
+                Buy Now
+
+            </button>
+
+
+        </form>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+
+
 {% else %}
-<p class="no-results">No products found matching your filters.</p>
+
+
+
+<div class="no-results">
+
+
+    <h2>
+        😔 No Products Found
+    </h2>
+
+
+    <p>
+        Try changing your search or filters.
+    </p>
+
+
+</div>
+
+
+
 {% endif %}
+
+
+
+
 {% endblock %}

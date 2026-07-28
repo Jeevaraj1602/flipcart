@@ -1,0 +1,336 @@
+{% extends "base.html" %}
+
+
+
+{% block css %}
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/payment.css') }}">
+
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+
+
+<div class="payment-container">
+
+
+
+
+
+<!-- LEFT SIDE -->
+
+<div class="payment-left">
+
+
+
+
+
+    <!-- ADDRESS -->
+
+    <div class="payment-card">
+
+
+        <h2>
+
+            <i class="fa fa-location-dot"></i>
+
+            Delivery Address
+
+        </h2>
+
+
+
+<label>
+    Full Name <span class="required">*</span>
+</label>
+
+<input type="text" placeholder="Full Name" required>
+
+
+
+<label>
+    Mobile Number <span class="required">*</span>
+</label>
+
+<input type="text" placeholder="Mobile Number" required>
+
+
+
+<label>
+    Address <span class="required">*</span>
+</label>
+
+<input type="text" placeholder="Address" required>
+
+
+
+<label>
+    City <span class="required">*</span>
+</label>
+
+<input type="text" placeholder="City" required>
+
+
+
+<label>
+    Pincode <span class="required">*</span>
+</label>
+
+<input type="text" placeholder="Pincode" required>
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- PAYMENT OPTIONS -->
+
+
+    <div class="payment-card">
+
+
+        <h2>
+
+            <i class="fa fa-credit-card"></i>
+
+            Payment Method
+
+        </h2>
+
+
+
+
+
+        <label class="payment-option">
+
+
+            <input type="radio" name="payment_method" value="Cash on Delivery" checked>
+
+
+            <i class="fa fa-money-bill"></i>
+
+
+            Cash On Delivery
+
+
+        </label>
+
+
+
+
+
+
+        <label class="payment-option">
+
+
+            <input type="radio" name="payment_method" value="UPI">
+
+
+            <i class="fa fa-mobile-screen"></i>
+
+
+            UPI
+
+
+        </label>
+
+
+
+
+
+
+
+        <label class="payment-option">
+
+
+            <input type="radio" name="payment_method" value="Credit Card">
+
+
+            <i class="fa fa-credit-card"></i>
+
+
+            Credit Card
+
+
+        </label>
+
+
+
+
+
+
+
+        <label class="payment-option">
+
+
+            <input type="radio" name="payment_method" value="EMI">
+
+
+            <i class="fa fa-calendar"></i>
+
+
+            EMI
+
+
+        </label>
+
+
+
+
+
+
+        <div class="emi-option">
+
+
+            <h3>
+
+                💳 No Cost EMI Available
+
+            </h3>
+
+
+            <p>
+
+                Pay monthly installments with easy EMI plans.
+
+            </p>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- RIGHT SIDE SUMMARY -->
+
+
+<div class="order-summary">
+
+
+<h2>
+
+    Order Summary
+
+</h2>
+
+
+
+
+{% for item in cart_items %}
+
+
+
+<div class="order-item">
+
+
+    <span>
+
+        {{ item.name }} x {{ item.qty }}
+
+    </span>
+
+
+    <span>
+
+        ₹{{ item.subtotal }}
+
+    </span>
+
+
+</div>
+
+
+
+{% endfor %}
+
+
+
+
+
+
+
+<div class="order-total">
+
+
+    <span>
+
+        Total
+
+    </span>
+
+
+    <span>
+
+        ₹{{ total }}
+
+    </span>
+
+
+</div>
+
+
+
+
+
+
+
+<form action="/place_order" method="POST">
+
+
+<button class="place-order-btn">
+
+
+    <i class="fa fa-lock"></i>
+
+    Place Order
+
+
+</button>
+
+
+</form>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+{% endblock %}

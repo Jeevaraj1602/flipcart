@@ -1,61 +1,114 @@
 {% extends "base.html" %}
 
+
+
+{% block css %}
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/login.css') }}">
+
+{% endblock %}
+
+
+
+
+
 {% block content %}
+
+
 
 <div class="login-container">
 
-    <div class="login-box">
 
-        <!-- Left Side -->
 
-        <div class="login-left">
+    <div class="login-card">
 
-            <h2>Login</h2>
 
-            <p>
-                Get access to your Orders, Wishlist and Recommendations.
-            </p>
 
-        </div>
+        <i class="fa fa-user-circle"></i>
 
-        <!-- Right Side -->
 
-        <div class="login-right">
 
-           <form method="POST">
+        <h2>
 
-                <input
-                    type="text"
-                    placeholder="Enter Email / Mobile Number"
-                    required
-                >
+            Login
 
-                <input
-                    type="password"
-                    placeholder="Enter Password"
-                    required
-                >
+        </h2>
 
-                <button type="submit">
-                    Login
-                </button>
 
-            </form>
 
-            <p class="signup-text">
 
-                New to Flipkart?
 
-                <a href="#">
-                    Create an account
-                </a>
+        <form method="POST">
 
-            </p>
 
-        </div>
+
+            <input 
+            type="text"
+            name="username"
+            placeholder="Enter Email or Mobile Number"
+            required>
+
+
+
+
+
+            <input 
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            required>
+
+
+
+
+
+
+
+            <button type="submit" class="login-submit">
+
+
+                Login
+
+
+            </button>
+
+
+
+
+
+        </form>
+
+
+
+
+
+
+        <p>
+
+            New to Flipkart?
+
+            <a href="#">
+
+                Create Account
+
+            </a>
+
+
+        </p>
+
+
+
+
 
     </div>
 
+
+
 </div>
+
+
+
+
 
 {% endblock %}

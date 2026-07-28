@@ -1,35 +1,402 @@
 {% extends "base.html" %}
-{% block content %}
-<div class="cart-container">
-    <h2>My Cart ({{ cart_items|length }} items)</h2>
 
-    {% if cart_items %}
-    <form action="/checkout" method="POST">
-        {% for item in cart_items %}
-        <div class="cart-item">
-            <input type="checkbox" name="selected_items" value="{{ item.id }}" class="cart-checkbox" checked>
-            <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="{{ item.name }}">
-            <div class="cart-item-info">
-                <h3>{{ item.name }}</h3>
-                <p>₹{{ item.price }} x {{ item.qty }} = <strong>₹{{ item.subtotal }}</strong></p>
-                <div class="qty-controls">
-                    <button type="submit" formaction="/update_cart/{{ item.id }}" formmethod="POST" name="action" value="decrease" class="btn-qty">−</button>
-                    <span>{{ item.qty }}</span>
-                    <button type="submit" formaction="/update_cart/{{ item.id }}" formmethod="POST" name="action" value="increase" class="btn-qty">+</button>
-                    <button type="submit" formaction="/remove_from_cart/{{ item.id }}" formmethod="POST" class="btn-remove">Remove</button>
-                </div>
-            </div>
+
+
+{% block css %}
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/cart.css') }}">
+
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+
+<div class="cart-page">
+
+
+
+    <div class="cart-left">
+
+
+
+        <div class="cart-header">
+
+            🛒 My Cart
+
+            {% if cart_items %}
+
+            ({{ cart_items|length }} items)
+
+            {% endif %}
+
         </div>
+
+
+
+
+
+        {% if cart_items %}
+
+
+
+        {% for item in cart_items %}
+
+
+
+        <div class="cart-product">
+
+
+
+            <!-- IMAGE -->
+
+            <div class="cart-image">
+
+
+                <img src="{{ url_for('static', filename='images/' + item.image) }}"
+                alt="{{ item.name }}">
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- DETAILS -->
+
+            <div class="cart-details">
+
+
+
+                <h2>
+
+                    {{ item.name }}
+
+                </h2>
+
+
+
+
+                <div class="rating-box">
+
+                    ⭐ {{ item.rating }}
+
+                </div>
+
+
+
+
+
+                <p class="delivery">
+
+                    🚚 Delivery in 3-5 days
+
+                </p>
+
+
+
+
+
+               <div class="price">
+
+
+    {% if item.original_price %}
+
+    <span class="old-price">
+
+        ₹{{ item.original_price }}
+
+    </span>
+
+
+    {% endif %}
+
+
+
+    <span class="current-price">
+
+        ₹{{ item.price }}
+
+    </span>
+
+
+
+    {% if item.discount %}
+
+    <span class="discount">
+
+        {{ item.discount }} OFF
+
+    </span>
+
+    {% endif %}
+
+
+</div>
+
+
+
+
+
+
+
+                <!-- QUANTITY -->
+
+
+                <div class="quantity">
+
+
+                    <form action="/update_cart/{{ item.id }}" method="POST">
+
+                        <input type="hidden" name="action" value="decrease">
+
+                        <button>-</button>
+
+                    </form>
+
+
+
+
+                    <b>
+
+                        {{ item.qty }}
+
+                    </b>
+
+
+
+
+
+                    <form action="/update_cart/{{ item.id }}" method="POST">
+
+                        <input type="hidden" name="action" value="increase">
+
+                        <button>+</button>
+
+                    </form>
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="cart-actions">
+
+
+                    <button class="save-btn">
+
+                        ❤️ Save For Later
+
+                    </button>
+
+
+
+
+                    <form action="/remove_from_cart/{{ item.id }}" method="POST">
+
+
+                        <button class="remove-btn">
+
+                            🗑 Remove
+
+                        </button>
+
+
+                    </form>
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
         {% endfor %}
 
-        <div class="cart-summary">
-            <h3>Total: ₹{{ total }}</h3>
-            <button type="submit" class="btn-checkout">Proceed to Checkout</button>
+
+
+
+
+        {% else %}
+
+
+
+        <div class="empty-cart">
+
+
+            <h2>
+
+                Your cart is empty 😔
+
+            </h2>
+
+
+            <p>
+
+                Add products to continue shopping.
+
+            </p>
+
+
+            <a href="/">
+
+                Continue Shopping
+
+            </a>
+
+
         </div>
-    </form>
-    {% else %}
-        <p class="empty-cart">Your cart is empty.</p>
-        <a href="/" class="btn-checkout">Continue Shopping</a>
+
+
+
+        {% endif %}
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- PRICE SUMMARY -->
+
+
+    {% if cart_items %}
+
+
+
+    <div class="price-summary">
+
+
+        <h2>
+
+            Price Details
+
+        </h2>
+
+
+
+
+        <div class="summary-row">
+
+            <span>
+
+                Price
+
+            </span>
+
+
+            <span>
+
+                ₹{{ total }}
+
+            </span>
+
+        </div>
+
+
+
+
+
+        <div class="summary-row">
+
+            <span>
+
+                Delivery Charges
+
+            </span>
+
+
+            <span class="free">
+
+                FREE
+
+            </span>
+
+
+        </div>
+
+
+
+
+
+
+        <hr>
+
+
+
+
+
+        <div class="total-row">
+
+            <span>
+
+                Total Amount
+
+            </span>
+
+
+            <b>
+
+                ₹{{ total }}
+
+            </b>
+
+        </div>
+
+
+
+
+
+
+        <a href="/checkout">
+
+
+            <button class="order-btn">
+
+                PLACE ORDER
+
+            </button>
+
+
+        </a>
+
+
+
+
+    </div>
+
+
+
     {% endif %}
+
+
+
+
+
 </div>
+
+
+
 {% endblock %}

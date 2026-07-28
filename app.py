@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from data import products
 
 app = Flask(__name__)
-app.secret_key = "dev-secret-key-change-later"
+app.secret_key = "flipkart_clone_secret_2026"
 
 # ---------- Helpers ----------
 def get_cart():
@@ -143,7 +143,7 @@ def checkout():
         return redirect(url_for('cart'))
 
     session['checkout_ids'] = selected_ids  # remember for place_order
-    return render_template('checkout.html', cart_items=cart_items, total=total)
+    return render_template('payment.html', cart_items=cart_items, total=total)
 
 @app.route('/place_order', methods=['POST'])
 def place_order():

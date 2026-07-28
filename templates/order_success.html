@@ -1,10 +1,307 @@
 {% extends "base.html" %}
+
+
+
+{% block css %}
+
+<style>
+
+.success-container {
+
+    min-height:75vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+
+.success-card {
+
+    background:white;
+
+    width:500px;
+
+    padding:40px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    box-shadow:0 5px 25px rgba(0,0,0,0.12);
+
+}
+
+
+
+.success-icon {
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    background:#28a745;
+
+    color:white;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:45px;
+
+}
+
+
+
+.success-card h1 {
+
+    margin-top:25px;
+
+    font-size:30px;
+
+    color:#212121;
+
+}
+
+
+
+.success-card p {
+
+    color:#666;
+
+    margin:10px 0;
+
+}
+
+
+
+.order-details {
+
+    background:#f5f7fb;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    margin:25px 0;
+
+    text-align:left;
+
+}
+
+
+
+.order-details div {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:12px 0;
+
+}
+
+
+
+.delivery-box {
+
+    background:#e8f5e9;
+
+    padding:15px;
+
+    border-radius:8px;
+
+    color:#2e7d32;
+
+}
+
+
+
+.success-buttons {
+
+    margin-top:25px;
+
+    display:flex;
+
+    gap:15px;
+
+    justify-content:center;
+
+}
+
+
+
+.success-buttons a {
+
+    text-decoration:none;
+
+    padding:12px 25px;
+
+    border-radius:5px;
+
+    font-weight:bold;
+
+}
+
+
+
+.shop-btn {
+
+    background:#2874f0;
+
+    color:white;
+
+}
+
+
+
+.orders-btn {
+
+    border:1px solid #2874f0;
+
+    color:#2874f0;
+
+}
+
+
+
+</style>
+
+{% endblock %}
+
+
+
+
+
 {% block content %}
+
+
+
 <div class="success-container">
-    <div class="success-icon">✅</div>
-    <h2>Order Placed Successfully!</h2>
-    <p>Payment Method: <strong>{{ payment_method }}</strong></p>
-    <p>Thank you for shopping with us. Your order will be delivered soon.</p>
-    <a href="/" class="btn-checkout">Continue Shopping</a>
+
+
+<div class="success-card">
+
+
+
+<div class="success-icon">
+
+    ✓
+
 </div>
+
+
+
+
+<h1>
+
+    Order Placed Successfully!
+
+</h1>
+
+
+
+
+<p>
+
+    Your order has been confirmed.
+
+</p>
+
+
+
+
+
+<div class="order-details">
+
+
+<div>
+
+<span>Order ID</span>
+
+<b>#FK20260728</b>
+
+</div>
+
+
+
+<div>
+
+<span>Payment Method</span>
+
+<b>{{ payment_method }}</b>
+
+</div>
+
+
+
+<div>
+
+<span>Status</span>
+
+<b>Confirmed</b>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="delivery-box">
+
+
+🚚 Your order will be delivered within 3-5 working days.
+
+
+</div>
+
+
+
+
+
+<div class="success-buttons">
+
+
+<a href="/" class="shop-btn">
+
+Continue Shopping
+
+</a>
+
+
+
+<a href="/" class="orders-btn">
+
+View Orders
+
+</a>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
 {% endblock %}

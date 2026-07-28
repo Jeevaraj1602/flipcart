@@ -1,39 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <title>Flipkart Clone</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+    <!-- Common CSS -->
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+
+
+    <!-- Font Awesome Icons -->
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+
+    <!-- Page Specific CSS -->
+
+    {% block css %}
+
+    {% endblock %}
+
+
 </head>
+
+
+
 <body>
-    <nav class="navbar">
-        <a href="/" class="logo">Flipkart</a>
-        <form class="search-form" action="/" method="GET">
-            <input type="text" name="q" class="search-bar" placeholder="Search for products, brands and more" value="{{ query if query else '' }}">
-        </form>
-       <div class="nav-links">
 
-    <a href="/login" class="login-btn">
-        Login
+
+
+
+<!-- ================= NAVBAR ================= -->
+
+
+<nav class="navbar">
+
+
+
+    <!-- LOGO -->
+
+
+    <div class="logo-section">
+
+
+        <a href="/" class="logo">
+
+
+            Flipkart
+
+
+            <span>
+
+                Explore
+
+                <b>Plus</b>
+
+            </span>
+
+
+        </a>
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- SEARCH BAR -->
+
+
+    <form class="search-form" action="/" method="GET">
+
+
+        <input
+
+        type="text"
+
+        name="q"
+
+        class="search-bar"
+
+        placeholder="Search for products, brands and more"
+
+        value="{{ query if query else '' }}">
+
+
+
+
+
+        <button type="submit" class="search-btn">
+
+
+            <i class="fa fa-search"></i>
+
+
+        </button>
+
+
+
+
+    </form>
+
+
+
+
+
+
+
+    <!-- NAVIGATION -->
+
+
+    <div class="nav-links">
+
+
+
+
+
+        <!-- LOGIN -->
+
+
+        <a href="/login" class="login-btn">
+
+
+            <i class="fa fa-user"></i>
+
+
+            Login
+
+
+        </a>
+
+
+
+
+
+
+
+        <!-- CART -->
+
+
+        <a href="/cart" class="cart-link">
+
+
+            <i class="fa fa-shopping-cart"></i>
+
+
+            Cart
+
+
+
+
+
+            {% if cart_count and cart_count > 0 %}
+
+
+            <span class="cart-badge">
+
+
+                {{ cart_count }}
+
+
+            </span>
+
+
+            {% endif %}
+
+
+
+
+
+        </a>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</nav>
+
+
+
+
+
+
+
+<!-- ================= CATEGORY BAR ================= -->
+
+
+
+<div class="category-bar">
+
+
+    <a href="/">
+
+        <i class="fa fa-home"></i>
+
+        Home
+
     </a>
 
-    <a href="/cart" class="cart-link">
-        🛒 Cart
-        {% if cart_count and cart_count > 0 %}
-        <span class="cart-badge">{{ cart_count }}</span>
-        {% endif %}
+
+
+    <a href="/?category=Mobiles">
+
+        📱 Mobiles
+
     </a>
+
+
+
+    <a href="/?category=Electronics">
+
+        💻 Electronics
+
+    </a>
+
+
+
+    <a href="/?category=Fashion">
+
+        👕 Fashion
+
+    </a>
+
+
+
+   <a href="/?category=Furniture">
+    🪑 Furniture
+</a>
+
+
+    <a href="/?category=Appliances">
+
+        ⚡ Appliances
+
+    </a>
+
+
 
 </div>
-           
-    </nav>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
 
-    <footer class="footer">
-        <p>&copy; Flipkart Project</p>
-    </footer>
+
+
+
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+
+<main>
+
+
+{% block content %}
+
+
+{% endblock %}
+
+
+</main>
+
+
+
+
+
+
+
+
+<!-- ================= FOOTER ================= -->
+
+
+<footer class="footer">
+
+
+<p>
+
+© 2026 Flipkart Clone | Academic Project
+
+</p>
+
+
+</footer>
+
+
+
+
+
+
 </body>
+
+
 </html>

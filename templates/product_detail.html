@@ -1,22 +1,309 @@
 {% extends "base.html" %}
+
+
+{% block css %}
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/product.css') }}">
+
+{% endblock %}
+
+
+
 {% block content %}
-<div class="detail-container">
-    <div class="detail-image">
-        <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
+
+
+
+<div class="product-container">
+
+
+
+    <!-- PRODUCT IMAGE -->
+
+    <div class="product-image-section">
+
+
+        <img 
+        src="{{ url_for('static', filename='images/' + product.image) }}"
+        alt="{{ product.name }}">
+
+
     </div>
-    <div class="detail-info">
-        <h1>{{ product.name }}</h1>
-        <p class="rating">⭐ {{ product.rating }}</p>
-        <p class="detail-price">₹{{ product.price }} <span class="discount">{{ product.discount }} off</span></p>
-        <p class="detail-desc">This is a great product with excellent features and quality. Perfect for everyday use.</p>
-        <div class="detail-buttons">
-            <form action="/add_to_cart/{{ product.id }}" method="POST">
-                <button type="submit" class="btn-cart">Add to Cart</button>
-            </form>
-            <form action="/buy_now/{{ product.id }}" method="POST">
-                <button type="submit" class="btn-buy">Buy Now</button>
-            </form>
+
+
+
+
+
+
+    <!-- PRODUCT DETAILS -->
+
+
+    <div class="product-info">
+
+
+        <h1>
+
+            {{ product.name }}
+
+        </h1>
+
+
+
+
+        <div class="product-rating">
+
+            ⭐ {{ product.rating }} Rating
+
         </div>
-    </div>
+
+
+
+
+
+        <div class="detail-price">
+
+
+    <span class="old-price">
+
+        ₹{{ product.original_price }}
+
+    </span>
+
+
+    <span class="current-price">
+
+        ₹{{ product.price }}
+
+    </span>
+
+
+
+    <span class="discount">
+
+        {{ product.discount }} OFF
+
+    </span>
+
+
 </div>
+
+
+
+
+
+        <p class="detail-desc">
+
+            This is a premium quality product with excellent features.
+            Designed for great performance and everyday usage.
+
+        </p>
+
+
+
+
+
+
+
+        <!-- BUTTONS -->
+
+
+        <div class="product-buttons">
+
+
+            <form action="/add_to_cart/{{ product.id }}" method="POST">
+
+
+                <button class="add-cart">
+
+
+                    <i class="fa fa-shopping-cart"></i>
+
+                    Add To Cart
+
+
+                </button>
+
+
+            </form>
+
+
+
+
+
+
+            <form action="/buy_now/{{ product.id }}" method="POST">
+
+
+                <button class="buy-now">
+
+
+                    ⚡ Buy Now
+
+
+                </button>
+
+
+            </form>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <!-- EMI -->
+
+
+        <div class="emi-box">
+
+
+            <h3>
+
+                💳 Easy EMI Available
+
+            </h3>
+
+
+            <p>
+
+                Pay in monthly installments with no-cost EMI options.
+
+            </p>
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <!-- OFFERS -->
+
+
+        <div class="offer-section">
+
+
+            <h3>
+
+                🎁 Available Offers
+
+            </h3>
+
+
+
+            <div class="offer">
+
+                ✔ Bank Offer: Extra discount available
+
+            </div>
+
+
+
+            <div class="offer">
+
+                ✔ Free delivery on this product
+
+            </div>
+
+
+
+            <div class="offer">
+
+                ✔ Secure payment guaranteed
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+        <!-- DELIVERY -->
+
+
+        <div class="delivery-box">
+
+
+            <h3>
+
+                🚚 Delivery Information
+
+            </h3>
+
+
+            <p>
+
+                Enter your location to check delivery availability.
+
+            </p>
+
+
+            <p>
+
+                Usually delivered within 3-5 days.
+
+            </p>
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- PRODUCT HIGHLIGHTS -->
+
+
+<div class="highlights">
+
+
+    <h2>
+
+        Product Highlights
+
+    </h2>
+
+
+    <ul>
+
+        <li>High quality and durable product</li>
+
+        <li>Latest features and modern design</li>
+
+        <li>Customer satisfaction guaranteed</li>
+
+        <li>1 year warranty support</li>
+
+
+    </ul>
+
+
+</div>
+
+
+
+
 {% endblock %}

@@ -1,114 +1,133 @@
 {% extends "base.html" %}
 
-
-
 {% block css %}
-
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/login.css') }}">
-
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 {% endblock %}
-
-
-
-
 
 {% block content %}
 
+<div class="login-page">
 
+    <div class="login-box">
 
-<div class="login-container">
+        <!-- Left Panel -->
 
+        <div class="login-left">
 
+            <h2>Login</h2>
 
-    <div class="login-card">
+            <p>
+                Get access to your Orders,<br>
+                Wishlist and Recommendations.
+            </p>
 
+            <div class="feature-list">
 
+                <div class="feature">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <span>Fast Delivery</span>
+                </div>
 
-        <i class="fa fa-user-circle"></i>
+                <div class="feature">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Secure Payments</span>
+                </div>
 
+                <div class="feature">
+                    <i class="fa-solid fa-tags"></i>
+                    <span>Best Deals Everyday</span>
+                </div>
 
+                <div class="feature">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>Easy Returns</span>
+                </div>
 
-        <h2>
+            </div>
 
-            Login
+        </div>
 
-        </h2>
+        <!-- Right Panel -->
 
+        <div class="login-right">
 
+            <form method="POST">
 
+                <div class="input-box">
 
+                    <i class="fa-solid fa-user"></i>
 
-        <form method="POST">
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Enter Email / Mobile Number"
+                        required>
 
+                </div>
 
+                <div class="input-box">
 
-            <input 
-            type="text"
-            name="username"
-            placeholder="Enter Email or Mobile Number"
-            required>
+                    <i class="fa-solid fa-lock"></i>
 
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Enter Password"
+                        required>
 
+                </div>
 
+                <button class="login-btn" type="submit">
 
+                    Login
 
-            <input 
-            type="password"
-            name="password"
-            placeholder="Enter Password"
-            required>
+                </button>
 
+            </form>
 
+            <p class="terms">
 
+                By continuing, you agree to Flipkart's
 
+                <a href="#">Terms of Use</a>
 
+                &
 
+                <a href="#">Privacy Policy</a>
 
-            <button type="submit" class="login-submit">
+            </p>
 
+            <div class="divider">
 
-                Login
+                <span>OR</span>
 
+            </div>
+
+            <button class="google-btn">
+
+                <i class="fa-brands fa-google"></i>
+
+                Login with Google
 
             </button>
 
+            <div class="signup">
 
+                New to Flipkart?
 
+                <a href="#">
 
+                    Create an account
 
-        </form>
+                </a>
 
+            </div>
 
-
-
-
-
-        <p>
-
-            New to Flipkart?
-
-            <a href="#">
-
-                Create Account
-
-            </a>
-
-
-        </p>
-
-
-
-
+        </div>
 
     </div>
 
-
-
 </div>
-
-
-
-
 
 {% endblock %}

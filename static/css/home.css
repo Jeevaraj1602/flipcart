@@ -1,5 +1,5 @@
 /* =========================
-   HOME PAGE
+   HOME PAGE HOME PAGE
 ========================= */
 
 
@@ -15,7 +15,7 @@
 
     padding:20px;
 
-    border-radius:8px;
+    border-radius:9px;
 
     margin-bottom:20px;
 
@@ -178,7 +178,7 @@
 
     font-size:16px;
 
-    margin:15px 0 8px;
+    margin:15px 0 9px;
 
     color:#212121;
 
@@ -195,7 +195,7 @@
 
 .price {
 
-    font-size:20px;
+    font-size:10px;
 
     font-weight:bold;
 

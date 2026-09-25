@@ -11,7 +11,8 @@ pipeline {
 
         stage('Maven Build') {
             steps {
-                bat 'mvn clean package'
+                bat 'set MAVEN_OPTS=-Xms32m -Xmx128m'
+bat 'mvn clean package'
             }
         }
 

@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Checkout') {
             steps {
                 git branch: 'featureprogram',
@@ -9,10 +10,15 @@ pipeline {
             }
         }
 
-        stage('Maven Build') {
+        stage('Maven Test') {
             steps {
-                bat 'set MAVEN_OPTS=-Xms32m -Xmx128m'
-bat 'mvn clean package'
+                bat 'mvn clean test'
+            }
+        }
+
+        stage('Maven Package') {
+            steps {
+                bat 'mvn package'
             }
         }
 

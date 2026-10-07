@@ -12,10 +12,13 @@
 
     <build>
         <plugins>
+
+            <!-- Python syntax check -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.5.0</version>
+
                 <executions>
                     <execution>
                         <id>python-check</id>
@@ -33,8 +36,31 @@
                             </arguments>
                         </configuration>
                     </execution>
+
+                    <!-- Run Python test cases -->
+                    <execution>
+                        <id>python-tests</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>python</executable>
+                            <arguments>
+                                <argument>-m</argument>
+                                <argument>unittest</argument>
+                                <argument>discover</argument>
+                                <argument>-s</argument>
+                                <argument>tests</argument>
+                                <argument>-v</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+
                 </executions>
             </plugin>
+
         </plugins>
     </build>
+
 </project>
